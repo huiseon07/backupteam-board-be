@@ -6,8 +6,8 @@ app.get("/", (req, res) => {
   res.send("/ 요청 했음");
 });
 
-app.post("/host", (req, res) => {
-  res.send("/host 요청 했음");
+app.post("/post", (req, res) => {
+  res.send("/post 요청 했음");
 });
 
 app.listen(port, () => {
