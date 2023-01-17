@@ -256,3 +256,15 @@ const users = [
 // console.log(d);
 
 // 4-3) Looney Tunes: Back in Action 라는 movie_title 을 가진 게시물의 작성자의 이메일
+
+// const a = scores.filter((obj) => obj.score < 40).map((obj) => obj.name);
+const e = movies.find(
+  (obj) => obj.movie_title === "Looney Tunes: Back in Action"
+);
+console.log(e);
+const f = users.find((obj) => obj.id === 8);
+console.log(f);
+// const g = users.find((obj) => obj.email === 8);
+// console.log(g);
+
+//3번과 4-1,3) 진행하지 못함
