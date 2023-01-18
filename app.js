@@ -207,12 +207,17 @@ app.post("/movies", (req, res) => {
 // 4. hit_count 1을 더한 객체를 movies 내에서 기존 객체에 치환한다. (findIndex, splice 사용)
 // 5. hit_count 1을 더한 객체를 반환한다.
 
-// findIndex
-// splice
+// findIndex ) 판별 함수를 만족하는 첫 식별자 반환 , arr.findIndex(callback)
+// splice ) 배열의 기존 요소를 삭제 또는 교체하거나 새 요소를 추가하여 배열의 내용 변경
 
 app.get("/movies/:id", (req, res) => {
   const { id } = req.params;
-  // res.send(movies.find((movie) => movie.user_id === users.id));
+  const findMovie = movies.find((movie) => movie.id === Number(id));
+  const increaseReview = { ...findMovie, hit_count: findMovie.hit_count + 1 };
+  const movie = movies.findIndex((movie) => movie.id === Number(id));
+  movies.splice(movie, 1, increaseReview);
+
+  res.send(findMovie);
 });
 
 app.listen(port, () => {
