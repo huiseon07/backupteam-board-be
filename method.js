@@ -5,7 +5,8 @@
 // map ) 모든 값에 숫자를 "변경 혹은 추가"하고 싶을 때 사용
 // find ) "조건에 맞는 값 중 첫번째 값"을 리턴, 배열에서 특정 값을 찾는 조건을 callback 함수를 통해 전달
 // filter ) 특정 조건에 부합하는 배열의 "모든 값을 배열 형태"로 리턴
-// filter는 배열 값으로 호출해주고 해당 값을 map로 배열 조작해준다.
+// filter, map // 배열을 조작하는 함수
+// find // 첫번째 값의 요소 반환 , 객체를 반환한다
 
 // 1. 배열한테 사용한다 , 2. return 값이 있다
 // 화살표형 함수, 삼항연산자, true:false
@@ -88,7 +89,7 @@ const scores = [
 
 // 3) 가장 공부를 잘했던 “지영” 의 점수 확인
 
-// const b = scores.find((obj) => obj.name === "지영");
+// const b = scores.find((obj) => obj.name === "지영").score;
 // console.log(b);
 
 const movies = [
@@ -243,11 +244,27 @@ const users = [
 
 // 4-1) movies에 user의 이름 포함
 // map 활용
+// movie의 user_id와 users의 id를 매칭, users의 name을 넣은 형태로 새로 만들기
+// users는 배열 , .name (key 값일 때만 '.' 사용 가능)
 
-// const c = movies.map((name) => ({
-//   ...name,
-//   name: users.name,
+// const userInfo = movies.map((movie) => ({
+//   ...movie,
+//   name: users.find((user) => user.id === movie.user_id).name,
 // }));
+// console.log(userInfo);
+
+// const c = movies.map((movie) => {
+//   // users배열에서 영화의 user_id 에 사용된 사람 리스트만 뽑아오기
+//   const userInfo = users.filter((user) => {
+//     if (movie.user_id === user.id) return true;
+//   });
+
+//   return {
+//     ...movie,
+//     name: userInfo[0].name,
+//   };
+// });
+
 // console.log(c);
 
 // 4-2) id 가 1번에 해당하는 user 가 작성한 영화 movie_title 로만 이루어진 배열을 가져온다
@@ -257,14 +274,10 @@ const users = [
 
 // 4-3) Looney Tunes: Back in Action 라는 movie_title 을 가진 게시물의 작성자의 이메일
 
-// const a = scores.filter((obj) => obj.score < 40).map((obj) => obj.name);
-const e = movies.find(
-  (obj) => obj.movie_title === "Looney Tunes: Back in Action"
-);
-console.log(e);
-const f = users.find((obj) => obj.id === 8);
-console.log(f);
-// const g = users.find((obj) => obj.email === 8);
-// console.log(g);
+// 객체에서 무엇을 가지고 온다 ".property"
 
-//3번과 4-1,3) 진행하지 못함
+// const e = movies.find(
+//   (obj) => obj.movie_title === "Looney Tunes: Back in Action"
+// ).user_id;
+// const email = users.find((user) => user.id === e).email;
+// console.log(email);
