@@ -1,6 +1,8 @@
 //영화를 볼 수 있는 웹 페이지
 
 const express = require("express");
+// const axios = require("axios");
+const cors = require("cors");
 const port = 9000;
 
 const movies = [
@@ -138,6 +140,542 @@ const movies = [
     user_id: 9,
     created_at: "2022-12-13 00:46:27",
   },
+  {
+    id: 21,
+    movie_title: "Misérables, Les",
+    hit_count: 23,
+    user_id: 1,
+    created_at: "2022-08-11 00:40:32",
+  },
+  {
+    id: 22,
+    movie_title: "Captain Ron",
+    hit_count: 1,
+    user_id: 1,
+    created_at: "2022-08-14 18:09:47",
+  },
+  {
+    id: 23,
+    movie_title: "Siberia",
+    hit_count: 37,
+    user_id: 9,
+    created_at: "2022-02-08 02:44:29",
+  },
+  {
+    id: 24,
+    movie_title: "Girl, The",
+    hit_count: 82,
+    user_id: 6,
+    created_at: "2022-08-29 00:02:21",
+  },
+  {
+    id: 25,
+    movie_title: "44 Minutes: The North Hollywood Shoot-Out",
+    hit_count: 2,
+    user_id: 4,
+    created_at: "2022-12-06 20:33:12",
+  },
+  {
+    id: 26,
+    movie_title: "C'mon Man",
+    hit_count: 62,
+    user_id: 2,
+    created_at: "2022-08-18 16:43:05",
+  },
+  {
+    id: 27,
+    movie_title: "Jim Jefferies: Alcoholocaust",
+    hit_count: 4,
+    user_id: 8,
+    created_at: "2022-07-05 16:49:03",
+  },
+  {
+    id: 28,
+    movie_title: "Grand Budapest Hotel, The",
+    hit_count: 35,
+    user_id: 9,
+    created_at: "2022-01-10 08:22:27",
+  },
+  {
+    id: 29,
+    movie_title: "Ju-on: The Curse 2",
+    hit_count: 64,
+    user_id: 7,
+    created_at: "2022-10-18 21:59:19",
+  },
+  {
+    id: 30,
+    movie_title: "Looney Tunes: Back in Action",
+    hit_count: 17,
+    user_id: 8,
+    created_at: "2022-10-26 06:56:30",
+  },
+  {
+    id: 31,
+    movie_title: "Undertaker and His Pals, The",
+    hit_count: 91,
+    user_id: 6,
+    created_at: "2022-02-22 11:23:11",
+  },
+  {
+    id: 32,
+    movie_title: "BlinkyTM",
+    hit_count: 4,
+    user_id: 5,
+    created_at: "2022-01-08 21:02:09",
+  },
+  {
+    id: 33,
+    movie_title: "Alien Predator (Mutant II) (Falling, The)",
+    hit_count: 47,
+    user_id: 2,
+    created_at: "2022-02-28 15:55:13",
+  },
+  {
+    id: 34,
+    movie_title: "Lorenzo's Oil",
+    hit_count: 26,
+    user_id: 6,
+    created_at: "2022-01-21 02:46:27",
+  },
+  {
+    id: 35,
+    movie_title: "Beyond Re-Animator",
+    hit_count: 88,
+    user_id: 5,
+    created_at: "2022-04-26 13:44:52",
+  },
+  {
+    id: 36,
+    movie_title: "Mississippi Burning",
+    hit_count: 64,
+    user_id: 8,
+    created_at: "2022-11-14 05:23:58",
+  },
+  {
+    id: 37,
+    movie_title:
+      "Last Circus, The (Balada triste de trompeta) (Sad Trumpet Ballad, A)",
+    hit_count: 55,
+    user_id: 1,
+    created_at: "2022-03-24 06:27:21",
+  },
+  {
+    id: 38,
+    movie_title: "Power and Terror: Noam Chomsky in Our Times",
+    hit_count: 85,
+    user_id: 3,
+    created_at: "2022-04-30 19:43:43",
+  },
+  {
+    id: 39,
+    movie_title: "Grumpy Cat's Worst Christmas Ever",
+    hit_count: 58,
+    user_id: 9,
+    created_at: "2022-12-13 00:46:27",
+  },
+  {
+    id: 40,
+    movie_title: "Misérables, Les",
+    hit_count: 23,
+    user_id: 1,
+    created_at: "2022-08-11 00:40:32",
+  },
+  {
+    id: 41,
+    movie_title: "Captain Ron",
+    hit_count: 1,
+    user_id: 1,
+    created_at: "2022-08-14 18:09:47",
+  },
+  {
+    id: 42,
+    movie_title: "Siberia",
+    hit_count: 37,
+    user_id: 9,
+    created_at: "2022-02-08 02:44:29",
+  },
+  {
+    id: 43,
+    movie_title: "Girl, The",
+    hit_count: 82,
+    user_id: 6,
+    created_at: "2022-08-29 00:02:21",
+  },
+  {
+    id: 44,
+    movie_title: "44 Minutes: The North Hollywood Shoot-Out",
+    hit_count: 2,
+    user_id: 4,
+    created_at: "2022-12-06 20:33:12",
+  },
+  {
+    id: 45,
+    movie_title: "C'mon Man",
+    hit_count: 62,
+    user_id: 2,
+    created_at: "2022-08-18 16:43:05",
+  },
+  {
+    id: 46,
+    movie_title: "Jim Jefferies: Alcoholocaust",
+    hit_count: 4,
+    user_id: 8,
+    created_at: "2022-07-05 16:49:03",
+  },
+  {
+    id: 47,
+    movie_title: "Grand Budapest Hotel, The",
+    hit_count: 35,
+    user_id: 9,
+    created_at: "2022-01-10 08:22:27",
+  },
+  {
+    id: 48,
+    movie_title: "Ju-on: The Curse 2",
+    hit_count: 64,
+    user_id: 7,
+    created_at: "2022-10-18 21:59:19",
+  },
+  {
+    id: 49,
+    movie_title: "Looney Tunes: Back in Action",
+    hit_count: 17,
+    user_id: 8,
+    created_at: "2022-10-26 06:56:30",
+  },
+  {
+    id: 50,
+    movie_title: "Undertaker and His Pals, The",
+    hit_count: 91,
+    user_id: 6,
+    created_at: "2022-02-22 11:23:11",
+  },
+  {
+    id: 51,
+    movie_title: "BlinkyTM",
+    hit_count: 4,
+    user_id: 5,
+    created_at: "2022-01-08 21:02:09",
+  },
+  {
+    id: 52,
+    movie_title: "Alien Predator (Mutant II) (Falling, The)",
+    hit_count: 47,
+    user_id: 2,
+    created_at: "2022-02-28 15:55:13",
+  },
+  {
+    id: 53,
+    movie_title: "Lorenzo's Oil",
+    hit_count: 26,
+    user_id: 6,
+    created_at: "2022-01-21 02:46:27",
+  },
+  {
+    id: 54,
+    movie_title: "Beyond Re-Animator",
+    hit_count: 88,
+    user_id: 5,
+    created_at: "2022-04-26 13:44:52",
+  },
+  {
+    id: 55,
+    movie_title: "Mississippi Burning",
+    hit_count: 64,
+    user_id: 8,
+    created_at: "2022-11-14 05:23:58",
+  },
+  {
+    id: 56,
+    movie_title:
+      "Last Circus, The (Balada triste de trompeta) (Sad Trumpet Ballad, A)",
+    hit_count: 55,
+    user_id: 1,
+    created_at: "2022-03-24 06:27:21",
+  },
+  {
+    id: 57,
+    movie_title: "Power and Terror: Noam Chomsky in Our Times",
+    hit_count: 85,
+    user_id: 3,
+    created_at: "2022-04-30 19:43:43",
+  },
+  {
+    id: 58,
+    movie_title: "Grumpy Cat's Worst Christmas Ever",
+    hit_count: 58,
+    user_id: 9,
+    created_at: "2022-12-13 00:46:27",
+  },
+  {
+    id: 59,
+    movie_title: "Misérables, Les",
+    hit_count: 23,
+    user_id: 1,
+    created_at: "2022-08-11 00:40:32",
+  },
+  {
+    id: 60,
+    movie_title: "Captain Ron",
+    hit_count: 1,
+    user_id: 1,
+    created_at: "2022-08-14 18:09:47",
+  },
+  {
+    id: 61,
+    movie_title: "Siberia",
+    hit_count: 37,
+    user_id: 9,
+    created_at: "2022-02-08 02:44:29",
+  },
+  {
+    id: 62,
+    movie_title: "Girl, The",
+    hit_count: 82,
+    user_id: 6,
+    created_at: "2022-08-29 00:02:21",
+  },
+  {
+    id: 63,
+    movie_title: "44 Minutes: The North Hollywood Shoot-Out",
+    hit_count: 2,
+    user_id: 4,
+    created_at: "2022-12-06 20:33:12",
+  },
+  {
+    id: 64,
+    movie_title: "C'mon Man",
+    hit_count: 62,
+    user_id: 2,
+    created_at: "2022-08-18 16:43:05",
+  },
+  {
+    id: 65,
+    movie_title: "Jim Jefferies: Alcoholocaust",
+    hit_count: 4,
+    user_id: 8,
+    created_at: "2022-07-05 16:49:03",
+  },
+  {
+    id: 66,
+    movie_title: "Grand Budapest Hotel, The",
+    hit_count: 35,
+    user_id: 9,
+    created_at: "2022-01-10 08:22:27",
+  },
+  {
+    id: 67,
+    movie_title: "Ju-on: The Curse 2",
+    hit_count: 64,
+    user_id: 7,
+    created_at: "2022-10-18 21:59:19",
+  },
+  {
+    id: 68,
+    movie_title: "Looney Tunes: Back in Action",
+    hit_count: 17,
+    user_id: 8,
+    created_at: "2022-10-26 06:56:30",
+  },
+  {
+    id: 69,
+    movie_title: "Undertaker and His Pals, The",
+    hit_count: 91,
+    user_id: 6,
+    created_at: "2022-02-22 11:23:11",
+  },
+  {
+    id: 70,
+    movie_title: "BlinkyTM",
+    hit_count: 4,
+    user_id: 5,
+    created_at: "2022-01-08 21:02:09",
+  },
+  {
+    id: 71,
+    movie_title: "Alien Predator (Mutant II) (Falling, The)",
+    hit_count: 47,
+    user_id: 2,
+    created_at: "2022-02-28 15:55:13",
+  },
+  {
+    id: 72,
+    movie_title: "Lorenzo's Oil",
+    hit_count: 26,
+    user_id: 6,
+    created_at: "2022-01-21 02:46:27",
+  },
+  {
+    id: 73,
+    movie_title: "Beyond Re-Animator",
+    hit_count: 88,
+    user_id: 5,
+    created_at: "2022-04-26 13:44:52",
+  },
+  {
+    id: 74,
+    movie_title: "Mississippi Burning",
+    hit_count: 64,
+    user_id: 8,
+    created_at: "2022-11-14 05:23:58",
+  },
+  {
+    id: 75,
+    movie_title:
+      "Last Circus, The (Balada triste de trompeta) (Sad Trumpet Ballad, A)",
+    hit_count: 55,
+    user_id: 1,
+    created_at: "2022-03-24 06:27:21",
+  },
+  {
+    id: 76,
+    movie_title: "Power and Terror: Noam Chomsky in Our Times",
+    hit_count: 85,
+    user_id: 3,
+    created_at: "2022-04-30 19:43:43",
+  },
+  {
+    id: 77,
+    movie_title: "Grumpy Cat's Worst Christmas Ever",
+    hit_count: 58,
+    user_id: 9,
+    created_at: "2022-12-13 00:46:27",
+  },
+  {
+    id: 78,
+    movie_title: "Misérables, Les",
+    hit_count: 23,
+    user_id: 1,
+    created_at: "2022-08-11 00:40:32",
+  },
+  {
+    id: 79,
+    movie_title: "Captain Ron",
+    hit_count: 1,
+    user_id: 1,
+    created_at: "2022-08-14 18:09:47",
+  },
+  {
+    id: 80,
+    movie_title: "Siberia",
+    hit_count: 37,
+    user_id: 9,
+    created_at: "2022-02-08 02:44:29",
+  },
+  {
+    id: 81,
+    movie_title: "Girl, The",
+    hit_count: 82,
+    user_id: 6,
+    created_at: "2022-08-29 00:02:21",
+  },
+  {
+    id: 82,
+    movie_title: "44 Minutes: The North Hollywood Shoot-Out",
+    hit_count: 2,
+    user_id: 4,
+    created_at: "2022-12-06 20:33:12",
+  },
+  {
+    id: 83,
+    movie_title: "C'mon Man",
+    hit_count: 62,
+    user_id: 2,
+    created_at: "2022-08-18 16:43:05",
+  },
+  {
+    id: 84,
+    movie_title: "Jim Jefferies: Alcoholocaust",
+    hit_count: 4,
+    user_id: 8,
+    created_at: "2022-07-05 16:49:03",
+  },
+  {
+    id: 85,
+    movie_title: "Grand Budapest Hotel, The",
+    hit_count: 35,
+    user_id: 9,
+    created_at: "2022-01-10 08:22:27",
+  },
+  {
+    id: 86,
+    movie_title: "Ju-on: The Curse 2",
+    hit_count: 64,
+    user_id: 7,
+    created_at: "2022-10-18 21:59:19",
+  },
+  {
+    id: 87,
+    movie_title: "Looney Tunes: Back in Action",
+    hit_count: 17,
+    user_id: 8,
+    created_at: "2022-10-26 06:56:30",
+  },
+  {
+    id: 88,
+    movie_title: "Undertaker and His Pals, The",
+    hit_count: 91,
+    user_id: 6,
+    created_at: "2022-02-22 11:23:11",
+  },
+  {
+    id: 89,
+    movie_title: "BlinkyTM",
+    hit_count: 4,
+    user_id: 5,
+    created_at: "2022-01-08 21:02:09",
+  },
+  {
+    id: 90,
+    movie_title: "Alien Predator (Mutant II) (Falling, The)",
+    hit_count: 47,
+    user_id: 2,
+    created_at: "2022-02-28 15:55:13",
+  },
+  {
+    id: 91,
+    movie_title: "Lorenzo's Oil",
+    hit_count: 26,
+    user_id: 6,
+    created_at: "2022-01-21 02:46:27",
+  },
+  {
+    id: 92,
+    movie_title: "Beyond Re-Animator",
+    hit_count: 88,
+    user_id: 5,
+    created_at: "2022-04-26 13:44:52",
+  },
+  {
+    id: 93,
+    movie_title: "Mississippi Burning",
+    hit_count: 64,
+    user_id: 8,
+    created_at: "2022-11-14 05:23:58",
+  },
+  {
+    id: 94,
+    movie_title:
+      "Last Circus, The (Balada triste de trompeta) (Sad Trumpet Ballad, A)",
+    hit_count: 55,
+    user_id: 1,
+    created_at: "2022-03-24 06:27:21",
+  },
+  {
+    id: 95,
+    movie_title: "Power and Terror: Noam Chomsky in Our Times",
+    hit_count: 85,
+    user_id: 3,
+    created_at: "2022-04-30 19:43:43",
+  },
+  {
+    id: 96,
+    movie_title: "Grumpy Cat's Worst Christmas Ever",
+    hit_count: 58,
+    user_id: 9,
+    created_at: "2022-12-13 00:46:27",
+  },
 ];
 
 const users = [
@@ -155,6 +693,7 @@ const users = [
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 
 // movie 관련 내용 중 이름까지 포함해서 출력
@@ -168,12 +707,60 @@ app.use(express.urlencoded({ extended: false }));
 // 4. 가져온 name을 순회중 movie 의 name property 에 추가한다.
 
 app.get("/movies", (req, res) => {
-  res.send(
-    movies.map((movie) => ({
-      ...movie,
-      name: users.find((user) => user.id === movie.user_id).name,
-    }))
-  );
+  const page = req.query.page || 1;
+  // console.log("page :", page);
+
+  //원본 값 유지
+  const cloneMovies = [...movies];
+  const lastPage = Math.ceil(movies.length / 10);
+  const startIndex = (page - 1) * 10;
+  const paginationMovies = cloneMovies.splice(startIndex, 10);
+
+  const moviesList = paginationMovies.map((movie) => ({
+    ...movie,
+    name: users.find((user) => user.id === movie.user_id).name,
+  }));
+
+  moviesList.sort((a, b) => {
+    const preTimestamp = new Date(a.created_at).getTime();
+    const curTimestamp = new Date(b.created_at).getTime();
+    // console.log(prevTimestamp, " / ", curTimestamp);
+    return curTimestamp - preTimestamp;
+  });
+
+  // const startIndex = {(page-1)* 10}+1;
+  // 원래는 페이지 번호가 1부터 시작하기 때문에 1을 더해주어야 함
+  // console.log(startIndex);
+  // console.log("lastpage : ", lastPage);
+
+  res.send({
+    pageInfo: {
+      lastPage,
+    },
+    movies: paginationMovies,
+    movies: moviesList,
+  });
+});
+
+// [영화 상세]
+// 1. 사용자가 보내준 id 를 가져온다
+// 2. id 에 해당하는 movie 를 가져온다
+// 3. 가져온 movie 에서 hit_count 1을 더한 객체를 만든다
+// 4. hit_count 1을 더한 객체를 movies 내에서 기존 객체에 치환한다. (findIndex, splice 사용)
+// 5. hit_count 1을 더한 객체를 반환한다.
+
+// findIndex ) 판별 함수를 만족하는 첫 식별자 반환 , arr.findIndex(callback)
+// splice ) 배열의 기존 요소를 삭제 또는 교체하거나 새 요소를 추가하여 배열의 내용 변경
+// 전개구문
+
+app.get("/movies/:id", (req, res) => {
+  const { id } = req.params;
+  const findMovie = movies.find((movie) => movie.id === Number(id));
+  const increaseReview = { ...findMovie, hit_count: findMovie.hit_count + 1 };
+  const movie = movies.findIndex((movie) => movie.id === Number(id));
+  movies.splice(movie, 1, increaseReview);
+
+  return res.send(findMovie);
 });
 
 // [영화 등록]
@@ -186,38 +773,25 @@ app.get("/movies", (req, res) => {
 app.post("/movies", (req, res) => {
   const { movie_title, user_id } = req.body;
   // const id = movies.at(-1).id + 1;
-  // const hitCount = 0;
+  const hitCount = 0;
   const date = new Date().toISOString().substring(0, 10);
   const time = new Date().toISOString().substring(11, 19);
   // const created_at = `${date} ${time}`;
-  movies.push({
+  movies.unshift({
     id: movies.at(-1).id + 1,
     movie_title,
-    hitCount: 0,
+    hit_count: hitCount,
     user_id,
     created_at: `${date} ${time}`,
   });
   return res.send(movies);
-});
 
-// [영화 상세]
-// 1. 사용자가 보내준 id 를 가져온다
-// 2. id 에 해당하는 movie 를 가져온다
-// 3. 가져온 movie 에서 hit_count 1을 더한 객체를 만든다
-// 4. hit_count 1을 더한 객체를 movies 내에서 기존 객체에 치환한다. (findIndex, splice 사용)
-// 5. hit_count 1을 더한 객체를 반환한다.
-
-// findIndex ) 판별 함수를 만족하는 첫 식별자 반환 , arr.findIndex(callback)
-// splice ) 배열의 기존 요소를 삭제 또는 교체하거나 새 요소를 추가하여 배열의 내용 변경
-
-app.get("/movies/:id", (req, res) => {
-  const { id } = req.params;
-  const findMovie = movies.find((movie) => movie.id === Number(id));
-  const increaseReview = { ...findMovie, hit_count: findMovie.hit_count + 1 };
-  const movie = movies.findIndex((movie) => movie.id === Number(id));
-  movies.splice(movie, 1, increaseReview);
-
-  res.send(findMovie);
+  // const newMovie = req.body;
+  // newMovie.id = movies[movies.length - 1].id + 1;
+  // newMovie.hit_count = 0;
+  // newMovie.created_at = new Data().toISOString();
+  // movies.push(newMovie);
+  // res.send(newMovie);
 });
 
 app.listen(port, () => {
