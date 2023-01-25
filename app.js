@@ -777,8 +777,10 @@ app.post("/movies", (req, res) => {
   const date = new Date().toISOString().substring(0, 10);
   const time = new Date().toISOString().substring(11, 19);
   // const created_at = `${date} ${time}`;
+
+  // length 값이 0부터 시작되기 때문에 +1 진행
   movies.unshift({
-    id: movies.at(-1).id + 1,
+    id: movies.length + 2,
     movie_title,
     hit_count: hitCount,
     user_id,
