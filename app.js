@@ -13,8 +13,6 @@ app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 
-function getMovieByPage() {}
-
 // movie 관련 내용 중 이름까지 포함해서 출력
 // side effect (실행 중에 어떤 객체를 접근해서 변화가 일어나는 행위)
 // 구조분해할당
@@ -26,39 +24,37 @@ function getMovieByPage() {}
 // 4. 가져온 name을 순회중 movie 의 name property 에 추가한다.
 
 app.get("/movies", (req, res) => {
-  const total = Math.ceil(movies.length / 10);
+  const page = req.query.page || 1;
+  // console.log("page :", page);
 
-  function getPagination(page, total) {
-    if (page < 3) return [1, 2, 3, "...", total];
-    if (page < total - 2) return ["...", page - 1, page, "...", total];
-    return [1, "...", total - 2, total - 1, total];
-  }
+  const cloneMovies = [...movies];
+  const lastPage = Math.ceil(movies.length / 10);
+  const startIndex = (page - 1) * 10;
+  const paginationMovies = cloneMovies.splice(startIndex, 10);
 
-  for (let i = 1; i <= 10; i++) console.log(i, ":", ...getPagination(i, 10));
+  const moviesList = paginationMovies.map((movie) => ({
+    ...movie,
+    name: users.find((user) => user.id === movie.user_id).name,
+  }));
 
-  // const moviesList = getPagination.map((movie) => ({
-  //   ...movie,
-  //   name: users.find((user) => user.id === movie.user_id).name,
-  // }));
+  moviesList.sort((a, b) => {
+    const preTimestamp = new Date(a.created_at).getTime();
+    const curTimestamp = new Date(b.created_at).getTime();
+    // console.log(prevTimestamp, " / ", curTimestamp);
+    return curTimestamp - preTimestamp;
+  });
 
-  // moviesList.sort((a, b) => {
-  //   const preTimestamp = new Date(a.created_at).getTime();
-  //   const curTimestamp = new Date(b.created_at).getTime();
-  //   // console.log(prevTimestamp, " / ", curTimestamp);
-  //   return curTimestamp - preTimestamp;
-  // });
+  // const startIndex = {(page-1)* 10}+1;
+  // 원래는 페이지 번호가 1부터 시작하기 때문에 1을 더해주어야 함
+  // console.log(startIndex);
+  // console.log("lastpage : ", lastPage);
 
-  // // const startIndex = {(page-1)* 10}+1;
-  // // 원래는 페이지 번호가 1부터 시작하기 때문에 1을 더해주어야 함
-  // // console.log(startIndex);
-  // // console.log("lastpage : ", lastPage);
-
-  // res.send({
-  //   pageInfo: {
-  //     lastPage,
-  //   },
-  //   movies: moviesList,
-  // });
+  res.send({
+    pageInfo: {
+      lastPage,
+    },
+    movies: moviesList,
+  });
 });
 
 // [영화 상세]
