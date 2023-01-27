@@ -24,24 +24,39 @@ app.use(express.urlencoded({ extended: false }));
 // 4. 가져온 name을 순회중 movie 의 name property 에 추가한다.
 
 app.get("/movies", (req, res) => {
-  const page = req.query.page || 1;
-  // console.log("page :", page);
+  const page = req.query.page;
+  // if (page === "null") page = 1;
+  const dataPage = 10;
+  const pageCount = 5;
 
-  const cloneMovies = [...movies];
-  const lastPage = Math.ceil(movies.length / 10);
+  const totalData = [...movies];
   const startIndex = (page - 1) * 10;
-  const paginationMovies = cloneMovies.splice(startIndex, 10);
+  const indexPage = totalData.splice(startIndex, 10);
 
-  const moviesList = paginationMovies.map((movie) => ({
+  // 총 페이지수
+  const totalPage = Math.ceil(movies.length / dataPage);
+  // 화면에 보여질 페이지 그룹
+  const pageGroup = Math.ceil(page / pageCount);
+
+  // 화면에 보여질 마지막 페이지
+  const lastPage = pageGroup * 5;
+  // 화면에 보여질 첫번째 페이지
+  const firstPage = lastPage - (5 - 1);
+
+  // if (14 > Number(totalPage)) {
+  //   Number(totalPage) = 14
+  // }
+
+  const moviesList = indexPage.map((movie) => ({
     ...movie,
     name: users.find((user) => user.id === movie.user_id).name,
   }));
 
   moviesList.sort((a, b) => {
-    const preTimestamp = new Date(a.created_at).getTime();
+    const prevTimestamp = new Date(a.created_at).getTime();
     const curTimestamp = new Date(b.created_at).getTime();
     // console.log(prevTimestamp, " / ", curTimestamp);
-    return curTimestamp - preTimestamp;
+    return curTimestamp - prevTimestamp;
   });
 
   // const startIndex = {(page-1)* 10}+1;
@@ -51,7 +66,9 @@ app.get("/movies", (req, res) => {
 
   res.send({
     pageInfo: {
+      firstPage,
       lastPage,
+      totalPage,
     },
     movies: moviesList,
   });
